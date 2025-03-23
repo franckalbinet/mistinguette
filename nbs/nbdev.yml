@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "mistinguette"
+  site-url: "https://franckalbinet.github.io/mistinguette"
+  description: "Mistral.ai's little friedn"
+  repo-branch: main
+  repo-url: "https://github.com/franckalbinet/mistinguette"
