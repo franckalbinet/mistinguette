@@ -11,15 +11,16 @@ pip install mistinguette
 
 ## Getting started
 
-OpenAI’s Python SDK will automatically be installed with Cosette, if you
-don’t already have it.
+OpenAI’s Python SDK will automatically be installed with Mistinguette,
+if you don’t already have it.
 
 ``` python
 from mistinguette import *
 ```
 
-Cosette only exports the symbols that are needed to use the library, so
-you can use `import *` to import them. Alternatively, just use:
+Mistinguette only exports the symbols that are needed to use the
+library, so you can use `import *` to import them. Alternatively, just
+use:
 
 ``` python
 import mistinguette
@@ -53,7 +54,7 @@ model = models[1]
 
 ## Chat
 
-The main interface to Cosette is the
+The main interface to Mistinguette is the
 [`Chat`](https://franckalbinet.github.io/mistinguette/core.html#chat)
 class, which provides a stateful interface to the models:
 
@@ -207,7 +208,7 @@ r
   index=0)\], prefix=False, role=’assistant’),
   finish_reason=‘tool_calls’)\]
 
-Cosette handles all that for us – we just have to pass along the
+Mistinguette handles all that for us – we just have to pass along the
 message, and it all happens automatically:
 
 ``` python
