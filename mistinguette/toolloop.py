@@ -8,11 +8,12 @@ from .core import *
 from fastcore.utils import *
 from fastcore.meta import delegates
 
+import mistralai
 # from openai.resources.chat import Completions
 
 # %% ../01_toolloop.ipynb 11
 @patch
-@delegates(Completions.create)
+@delegates(mistralai.Chat.complete)
 def toolloop(self:Chat,
              pr, # Prompt to pass to model
              max_steps=10, # Maximum number of tool requests to loop through
@@ -20,11 +21,13 @@ def toolloop(self:Chat,
              cont_func:Optional[callable]=noop, # Function that stops loop if returns False
              **kwargs):
     "Add prompt `pr` to dialog and get a response from the model, automatically following up with `tool_use` messages"
+    import time
     r = self(pr, **kwargs)
     for i in range(max_steps):
         ch = r.choices[0]
         if ch.finish_reason!='tool_calls': break
         if trace_func: trace_func(r)
+        time.sleep(1)  # Add 1 second pause between queries to avoid rate limiting
         r = self(**kwargs)
         if not (cont_func or noop)(self.h[-2]): break
     if trace_func: trace_func(r)
